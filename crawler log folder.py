@@ -1,17 +1,10 @@
 class Solution:
-    def isRobotBounded(self, instructions: str) -> bool:
-        position = 0
-        direction = 0
+    def minOperations(self, logs: List[str]) -> int:
+        d = 0
+        for i in logs:
+            if i[:-1] == '..':
+                if d: d -= 1
+            elif i[:-1] != '.':
+                d += 1
         
-        for i in instructions:
-            if i == 'L':
-                position *= 1j
-                direction += 1
-            elif i == 'R':
-                position *= -1j
-                direction -= 1
-            else:
-                position += 1   
-          
-        if direction%4 != 0 or position == 0:
-            return True
+        return d
